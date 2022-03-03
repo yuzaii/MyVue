@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>初识vue</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<!--容器-->
+<div id="root">
+    <h1>hollo,{{name}}!</h1>
+    <h1>{{age}}岁！</h1>
+</div>
+
+
+</body>
+<script type="text/javascript">
+    Vue.config.productionTip=false
+    const x=new Vue({
+        el:'#root',
+        data:{
+            name:"周良宇",
+            age:18
+        }
+    })
+</script>
+</html>
