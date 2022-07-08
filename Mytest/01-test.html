@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>初识vue</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+  <script src="../js/axios.min.js"></script>
+
+</head>
+<body>
+<!--容器-->
+<div id="app">
+  <a :href="url">click</a>
+  <input v-model="url">
+</div>
+
+
+</body>
+<script type="text/javascript">
+  const x = new Vue({
+    el: '#app',
+    data: {
+      username: "111",
+      url: "https://www.baidu.com"
+
+    },
+    mounted(){
+      axios.get({
+        url:"https://ntutools.cn/getall_bug_advice",
+        headers: {
+          "Content-Type": "application/octet-stream",
+          "Access-Control-Allow-Origin": "*",
+        }
+      }).then(function (res) {
+        // console.log(res)
+      })
+    }
+
+
+  });
+</script>
+</html>

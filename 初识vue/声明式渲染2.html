@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app-2">
+  <span v-bind:title="message">
+    鼠标悬停几秒钟查看此处动态绑定的提示信息！
+  </span>
+</div>
+</body>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script>
+  var app2 = new Vue({
+    el: '#app-2',
+    data: {
+      message: '这是一个悬停显示，如页面加载于 ' + new Date().toLocaleString()
+    }
+  })
+</script>
+</html>
+如果元素的属性需要绑定一些值，可以使用v-bind，只需要在data中定义即可
+使用app2.message = '新消息'可以修改信息

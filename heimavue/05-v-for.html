@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>初识vue</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<!--容器-->
+<div id="app">
+  <div v-for="addr in addrs">
+    {{addr}}
+  </div>
+  <hr>
+  <div v-for="(addr,i) in addrs">
+
+    {{i+1}}--{{addr}}
+  </div>
+</div>
+
+
+</body>
+<script type="text/javascript">
+  const x = new Vue({
+    el: '#app',
+    data: {
+      username: "111",
+      url: "https://www.baidu.com",
+      addrs:["北京","南京","上海"]
+
+    }
+
+
+  });
+</script>
+</html>

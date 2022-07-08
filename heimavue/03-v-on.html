@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>初识vue</title>
+  <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<!--容器-->
+<div id="app">
+  <input type="button" value="按钮" v-on:click="show()"><br>
+  <input type="button" value="按钮" @click="show()"><br>
+
+
+</div>
+
+
+</body>
+<script type="text/javascript">
+  const x = new Vue({
+    el: '#app',
+    data: {
+      username: "111",
+      url: "https://www.baidu.com"
+
+    },
+    methods:{
+      show(){
+        alert("我被点击了")
+      }
+    }
+
+
+  });
+</script>
+</html>

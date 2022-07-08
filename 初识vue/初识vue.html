@@ -8,20 +8,28 @@
 <body>
 <!--容器-->
 <div id="root">
-    <h1>hollo,{{name}},{{1+33=="34"}}!</h1>
-    <h1>{{age}}岁！</h1>
+    <h1>hello,{{name}}!</h1>
+    <h1>{{age}}岁111！</h1>
+    <h1>{{school.name}}</h1>
+    <a v-bind:href="school.url">jump</a><br>
+    <a :href="school.url.toUpperCase()">jump</a>
 </div>
 
 
 </body>
 <script type="text/javascript">
     Vue.config.productionTip=false
-    const x=new Vue({
-        el:'#root',
-        data:{
-            name:"周良宇",
-            age:18
+    const x = new Vue({
+        el: '#root',
+        data: {
+            name: "周良宇",
+            age: 18,
+            school: {
+                name: "ntu",
+                url: "http://www.ntutools.cn/"
+            }
+
         }
-    })
+    });
 </script>
 </html>

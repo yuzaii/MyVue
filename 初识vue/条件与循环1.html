@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app-3">
+    <p v-if="seen">现在你看到我了</p>
+</div>
+</body>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script>
+    var app3 = new Vue({
+        el: '#app-3',
+        data: {
+            seen: false
+        }
+    })
+</script>
+</html>
+这个例子演示了我们不仅可以把数据绑定到 DOM 文本或 attribute，
+还可以绑定到 DOM 结构。此外，Vue 也提供一个强大的过渡效果系统，可以在 Vue 插入/更新/移除元素时自动应用过渡效果。
+使用app3.seen = false

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>初识vue</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+<!--容器-->
+<div id="app">
+    <div v-if="count == 1">div1</div>
+    <div v-else-if="count == 2">div2</div>
+    <div v-else>div3</div>
+    <hr>
+    <div v-show="count==2">div v-show</div>
+    <input v-model="count">
+    {{ count }}
+    
+</div>
+
+
+</body>
+<script type="text/javascript">
+    const x = new Vue({
+        el: '#app',
+        data: {
+            username: "111",
+            count: 1
+
+        }
+
+
+    });
+</script>
+</html>
