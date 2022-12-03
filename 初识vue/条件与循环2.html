@@ -6,7 +6,9 @@
 </head>
 <body>
 <div id="app-4">
+    <input type="button" value="按钮" @click="show()"><br>
   <ol>
+  <!-- ol是带数字的有序列表啊 -->
     <li v-for="todo in todos">
       {{ todo.text }}
     </li>
@@ -23,7 +25,12 @@
         { text: '学习 Vue' },
         { text: '整个牛项目' }
       ]
-    }
+    },
+    methods: {
+            add: function () {
+                this.todos.push({ text: '新项目' })
+            }
+        }
   })
   app4.todos.push({ text: '新项目' })
 </script>

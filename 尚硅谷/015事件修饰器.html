@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    * {
+      margin-top: 20px;
+    }
+
+    .main {
+      background-color: cornflowerblue;
+    }
+
+    .demo1 {
+      background-color: aqua;
+    }
+    .demo2{
+      background-color: rgb(114, 114, 247);
+    }
+    .box1{
+      background-color: blueviolet;
+      padding: 5px;
+    }
+    .box2{
+      background-color: rgb(127, 171, 25);
+      padding: 5px;
+    }
+    .list{
+      width: 200px;
+      height: 150px;
+      background-color: coral;
+      overflow: auto;
+    }
+    li{
+      height: 100px;
+    }
+  </style>
+</head>
+<!-- Vue中的事件修饰符：
+1,prevent:阻止默认事件（常用）：
+2.stop:阻止事件冒泡（常用）：
+3.once:事件只触发一次（常用）：
+4.capture:使用事件的捕获模式：
+5.self:只有event,target是当前操作的元素时才触发事件：
+6.passive:事件的默认行为立即执行，无需等待事件回调执行完毕： -->
+<body>
+  <div class="main" id="app">
+    <!-- <a href="https://www.baidu.com" @click.prevent="show">点击跳转</a> -->
+    <!-- <a href="https://www.baidu.com" @click="show">点击跳转</a> -->
+    <!-- // 阻止事件的默认行为 -->
+    <a href="https://www.baidu.com" @click="show">不阻止事件的默认行为</a><br>
+    <a href="https://www.baidu.com" @click.prevent="show">阻止事件的默认行为</a>
+    <!-- //  -->
+    <!-- 这里的div也有div -->
+    <div class="demo1" @click="show">
+      <!-- 阻止冒泡 触发多次-->
+      <button href="https://www.baidu.com" @click="show">不阻止冒泡</button>
+      <button href="https://www.baidu.com" @click.stop="show">阻止冒泡</button>
+    </div>
+    <!-- 事件只触发一次 -->
+    <button href="https://www.baidu.com" @click="show">事件不只触发一次</button>
+    <button href="https://www.baidu.com" @click.once="show">事件只触发一次，就是只能点一次</button>
+    <!-- capture 捕捉模式
+      self
+      passive 事件的默认行为立即执行-->
+    <!-- self 只有点自己才会触发-->
+    <!-- <div class="box1" @click="showmsg(1)"> -->
+    <div class="box1" @click.capture="showmsg(1)">
+      div1
+      <div class="box2" @click="showmsg(2)">
+        div2
+      </div>
+    </div>
+  
+    <div class="demo2" @click.self="show">
+      只有点击自己才能执行
+      <!-- 阻止冒泡 -->
+      <button href="https://www.baidu.com" @click="show">阻止冒泡</a>
+    </div>
+    <!-- {{ message }} -->
+    <!-- scroll是优先响应事件本身的执行 -->
+    <!-- <ul class="list"  @scroll="demo"> -->
+      <!-- wheel需要等待运算完成还才能回调 -->
+    <ul class="list"  @wheel.passive="demo">
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+    </ul>
+  </div>
+
+
+</body>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script>
+  Vue.config.productionTip = false
+  var app = new Vue({
+    el: "#app",
+    data: {
+      message: "hello vue"
+    },
+    methods: {
+      show(e) {
+        // 阻止事件的默认行为
+        // e.preventDefault()
+        // e.stopPropagation();
+        console.log(e.target);
+        alert("123")
+      },
+      showmsg(msg){
+        alert(msg)
+      },
+      demo(){
+        // alert(1)
+        for (let i=0;i<100000;i++){
+          console.log('@');
+        }
+          console.log('累坏了');
+      }
+    }
+  })
+</script>
+
+</html>

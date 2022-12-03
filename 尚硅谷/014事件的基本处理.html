@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    *{
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<!-- 事件的基本使用：
+1.使用v-on:xxx或@xxx绑定事件，其中xxx是事件名：
+2.事件的回调需要配置在methods对象中，最终会在vm上：
+3.methods中配置的函数，不要用箭头函数！否则this就不是vm了：
+4.methods中配置的函数，都是被Vue所管理的函数，this的指向是vm或组件实例对象：
+5.@click="demo"和@click="demo($event)"效果一致，但后者可以传参： -->
+<body>
+<div id="app">
+  <h1>{{ name }}，你好！</h1>
+  <button v-on:click="showinfo0">点我提示信息(箭头函数)</button><br>
+  <button v-on:click="showinfo1">点我提示信息</button><br>
+ 
+  <button @click="showinfo2(66,$event)">点我提示信息2</button>
+</div>
+</body>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script>
+  var app=new Vue({
+    el:"#app",
+    data:{
+      name :"全栈程序员"
+    },
+    methods: {
+      showinfo1(event){
+        console.log(event)
+        console.log(event.target.innerText)
+        // 此处的this是vm
+        console.log(this)
+        alert('你点击啦1')
+      },
+      showinfo2(num,e){
+        console.log(num)
+        console.log(e)
+        // 此处的this是vm
+        console.log(this)
+        alert('你点击啦2')
+      },
+      // 箭头函数
+      // methods中配置的函数，不要用箭头函数！否则this就不是vm了
+      // 因为他会去全局中找
+      showinfo0:()=>{
+        alert('你点击了箭头函数')
+        console.log(this)
+      }
+    }
+  })
+
+</script>
+</html>
