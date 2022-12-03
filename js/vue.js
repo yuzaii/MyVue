@@ -395,12 +395,14 @@
     /**
      * Show production mode tip message on boot?
      */
-    productionTip: "development" !== 'production',
+    // productionTip: "development" !== 'production',
+    productionTip: false,
 
     /**
      * Whether to enable devtools
      */
-    devtools: "development" !== 'production',
+    // devtools: "development" !== 'production',
+    devtools: false,
 
     /**
      * Whether to record perf
