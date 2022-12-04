@@ -58,6 +58,7 @@
       <!-- 阻止冒泡 触发多次-->
       <button href="https://www.baidu.com" @click="show">不阻止冒泡</button>
       <button href="https://www.baidu.com" @click.stop="show">阻止冒泡</button>
+      <a href="https://www.baidu.com" @click.stop.prevent="show">阻止冒泡和事件的默认行为</a>
     </div>
     <!-- 事件只触发一次 -->
     <button href="https://www.baidu.com" @click="show">事件不只触发一次</button>
@@ -77,7 +78,8 @@
     <div class="demo2" @click.self="show">
       只有点击自己才能执行
       <!-- 阻止冒泡 -->
-      <button href="https://www.baidu.com" @click="show">阻止冒泡</a>
+      <button @click="show">阻止冒泡</button>
+     
     </div>
     <!-- {{ message }} -->
     <!-- scroll是优先响应事件本身的执行 -->
