@@ -8,6 +8,11 @@
 <body>
 <!--容器-->
 <div id="app">
+  <!-- v-model与v-bind区别：
+  1、v-bind是单向绑定，用来绑定数据和属性以及表达式，数据只能从data流向页面。
+  2、v-model是双向绑定，数据能从data流向页面，也能从页面流向data。
+  3、v-bind可以给任何属性赋值，v-model只能给表单类，也就是具有value属性的元素进行数据双向绑定，如text、radio、checkbox、selected。 -->
+  
   <a v-bind:href="url">click</a>
   <a :href="url">click</a>
   <input v-model="url">
