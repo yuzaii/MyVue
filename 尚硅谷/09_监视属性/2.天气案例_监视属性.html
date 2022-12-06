@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <!-- 监视属性watch:
+  1.当被监视的属性变化时，回调函数自动调用，进行相关操作
+  2.监视的属性必须存在，才能进行监视！！
+  3,监视的两种写法：
+  (1).new Vue时传入watch配置
+  (2).通过vm.$watch监视 -->
+<div id="app">
+  
+  <!-- {{ message }} -->
+<h2>今天天气很{{info}}</h2>
+<button @click="change">切换天气</button>
+</div>
+</body>
+<!-- 引入vue -->
+<script type="text/javascript" src="/js/vue.js"></script>
+<script>
+  var app=new Vue({
+    el:"#app",
+    data:{
+    //   message:"hello vue",
+      ishot:true
+    },methods: {
+        change(){
+            this.ishot=!this.ishot
+        }
+    },computed:{
+        info(){
+            return this.ishot ? '炎热':'凉爽'
+        }
+    }
+    // ,watch:{
+    //   // 计算属性也可以
+    //   // info:{
+    //   ishot:{
+    //     immediate:true,//初始化时候让handler调用一下
+    //   // handler什么时候调用？当isHot发生改变时
+    //   handler(newValue,oldValue){
+    //     console.log('被修改了',newValue,oldValue);
+    //     }
+    //   }
+    // }
+  })
+  // 创建的时候知道监视谁就用上面的，当写一半才发现需要监视就用下面的
+app.$watch('ishot',{
+       immediate:true,//初始化时候让handler调用一下
+      // handler什么时候调用？当isHot发生改变时
+      handler(newValue,oldValue){
+        console.log('被修改了',newValue,oldValue);
+    }
+  }
+)
+</script>
+</html>

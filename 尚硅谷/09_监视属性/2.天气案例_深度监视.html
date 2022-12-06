@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<!-- 深度监视：
+(1).Vue中的watch默认不监测对象内部值的改变（一层）。
+(2).配置deep:true可以监测对象内部值改变（多层）。
+备注：
+(I).Vue自身可以监测对象内部值的改变，但Vue提供的watch默认不可以！
+(2).使用watch时根据数据的具体结构，决定是否采用深度监视。 -->
+<body>
+
+  <div id="app">
+
+    <!-- {{ message }} -->
+    <h2>今天天气很{{info}}</h2>
+    <button @click="change">切换天气</button>
+    <h3>a的值是:{{numbers.a}}</h3>
+    <button @click="numbers.a++">点我让a+1</button>
+    <h3>b的值是:{{numbers.b}}</h3>
+    <button @click="numbers.b++">点我让b+1</button>
+    <button @click="numbers={a:999,b:1111}">彻底替换</button>
+  </div>
+</body>
+<!-- 引入vue -->
+<script type="text/javascript" src="/js/vue.js"></script>
+<script>
+  var app = new Vue({
+    el: "#app",
+    data: {
+      //   message:"hello vue",
+      ishot: true,
+      numbers: {
+        a: 1,
+        b: 2,
+        c:{
+          d:{
+            e:1
+          }
+        }
+      }
+    }, methods: {
+      change() {
+        this.ishot = !this.ishot
+      }
+    }, computed: {
+      info() {
+        return this.ishot ? '炎热' : '凉爽'
+      }
+    }
+    , watch: {
+      // 计算属性也可以
+      // info:{
+      ishot: {
+        // immediate:true,//初始化时候让handler调用一下
+        // handler什么时候调用？当isHot发生改变时
+        handler(newValue, oldValue) {
+          console.log('被修改了', newValue, oldValue);
+        }
+      },
+      //监视多级结构中某个属性的变化
+      'numbers.a': {
+        handler() {
+          console.log('a变了');
+        }
+      },
+      //监视多级结构中所有园性的变化
+      numbers: {
+        deep:true,
+        handler() {
+          console.log('numbers变了');
+        }
+    }
+  }}
+  )
+  // 创建的时候知道监视谁就用上面的，当写一半才发现需要监视就用下面的
+// app.$watch('ishot',{
+//        immediate:true,//初始化时候让handler调用一下
+//       // handler什么时候调用？当isHot发生改变时
+//       handler(newValue,oldValue){
+//         console.log('被修改了',newValue,oldValue);
+//     }
+//   }
+// )
+</script>
+
+</html>
