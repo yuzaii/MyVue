@@ -25,6 +25,7 @@
         <!-- 全名：<span>{{firstname.slice(0,3)}}-{{lastname}}</span> -->
 
         <!-- 事件小括号加不加都行 返回值必须加小括号 -->
+        <!-- 全名：<span>{{fullname}}</span> -->
         全名：<span>{{fullname}}</span>
         <!-- 下面的都放在了缓存里面 -->
         <!-- 全名：<span>{{fullname}}</span>
@@ -35,31 +36,31 @@
 <!-- 引入vue -->
 <script type="text/javascript" src="/js/vue.js"></script>
 <script>
-    var app = new Vue   ({
+    var app = new Vue({
         el: "#app",
         data: {
             message: "hello vue",
             firstname: '张',
             lastname: '三',
+            fullname:'张-三'
         },
-        computed:{
-            fullname: {
-                // get有什么作用？当有人读取fullName时，get就会被调用，且返回值就作为ful1Name的值
-                // get什么时候调用？1.初次读取fu11Name时。2.所依赖的数据发生变化时
-                get(){
-                    console.log('get调用了');
-                    return this.firstname+'-'+this.lastname
-                },
-                // 当fullname被修改的时候
-                set(value){
-                    // this.firstname=1
-                    // this.lastname=2
-                    console.log('set');
-                    const arr= value.split('-')
-                    // console.log(arr);
-                    this.firstname=arr[0]
-                    this.lastname=arr[1]
-                }
+
+//         computedHiwatch之间区别
+// 1.computed能完成的功能，watch都可以完成。
+// 2.watch能完成的功能，computed不一定能完成，例如：watch可以进行异步操作。
+// 两个重要的小原则：
+// 1.所被Vue管理的函数，最好写成普通函数，这样this的指向才是vm或组件实例对象。
+// 2.所有不被Vue所管理的函数（定时器的回调函数、ajax的回调函数等），最好写成箭头函数，
+// 这样this的指向才是vm或组件实例对象。
+        watch:{
+            firstname(newValue,oldValue){
+                setTimeout(() => {
+                    console.log(this);
+                    this.fullname=newValue+'-'+this.lastname 
+                }, 1000);
+            },
+            lastname(newValue,oldValue){
+                this.fullname=this.firstname+'-'+newValue
             }
         }
     })
