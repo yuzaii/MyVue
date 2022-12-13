@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <div id="app">
+        <h1>{{msg}}</h1>
+        <hello></hello>
+        <hr>
+        <!-- <h2>学校名称：{{schoolname}}</h2>
+        <h2>学校地址：{{schooladr}}</h2> -->
+        <school></school>
+        <hr>
+       <student></student>
+        <!-- <h2>学生姓名：{{studentname}}</h2>
+        <h2>学生年龄：{{studentage}}</h2> -->
+        <!-- {{ message }} -->
+      
+    </div>
+    <div id="app2">
+        <hello></hello>
+    </div>
+</body>
+<!-- 引入vue -->
+<script type="text/javascript" src="/js/vue.js"></script>
+<script>
+    //创建school组件
+    const school = Vue.extend({
+        template:`<div>
+         <h2>学校名称：{{schoolname}}</h2>
+        <h2>学校地址：{{schooladr}}</h2>
+        <button @click="showname">点我提示学校名</button>
+            </div>`,
+        // el: "#app", // 不能写el配置项 vm配置
+        data() {
+            return {
+                schoolname: "北京大学",
+                schooladr: "北京"
+            }
+        },methods: {
+            showname(){
+                alert(this.schoolname)
+            }
+        },
+    })
+   
+    //创建student组件
+    const student = Vue.extend({
+        template:`<div>
+         <h2>学生姓名：{{studentname}}</h2>
+        <h2>学生年龄：{{studentage}}</h2>
+            </div>`,
+        // el: "#app", // 不能写el配置项 vm配置
+        data() {
+            return {
+                studentname: '鱼仔',
+                studentage: 20
+            }
+        }
+    })
+     // 创建hello组件
+     const hello=Vue.extend({
+        template:`<div>
+         <h2>你好啊，{{name}}</h2>
+            </div>`,
+        data(){
+            return{name:'张三'}
+        }
+    })
+    // 全局注册
+    Vue.component('hello',hello)
+    // 创建vm 大哥
+    new Vue({
+        el:'#app',
+        data:{
+            msg:'你好啊'
+        },
+        // 注册组件
+        components:{
+            // school:school,
+            // student:student
+            school,
+            student
+        }
+    })
+    new Vue({
+        el:'#app2',
+
+    })
+    // var app = new Vue({
+    //     el: "#app",
+    //     data: {
+    //         schoolname: "北京大学",
+    //         schooladr: "北京",
+    //         studentname: '鱼仔',
+    //         studentage: 20,
+    //         // school:{
+    //         //     name:"北京大学",
+    //         //     addr: "北京",
+    //         // },
+    //         // student:{
+    //         //     name:'鱼仔',
+    //         //     age: 20,
+    //         // }
+
+
+    //     }
+    // })
+
+</script>
+
+</html>

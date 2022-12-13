@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+    <div id="root">
+        {{ message }}
+        <!-- <hello></hello>
+        <school></school> -->
+       
+    </div>
+</body>
+<!-- 引入vue -->
+<script type="text/javascript" src="/js/vue.js"></script>
+<script>
+
+    // 定义student组件
+    const student = Vue.extend({
+        name: 'student',
+        template: `<div>
+         <h2>学生姓名：{{name}}</h2>
+        <h2>学生年龄：{{age}}</h2>
+            </div>`,
+        data() {
+            return {
+                name: '鱼仔',
+                age: 18
+            }
+
+        }
+    })
+    // 定义school组件
+    const school = Vue.extend({
+        name: 'school',
+        template: `<div>
+         <h2>学校名称：{{name}}</h2>
+        <h2>学生地址：{{address}}</h2>
+        <student></student>
+            </div>`,
+        data() {
+            return {
+                name: '北京大学',
+                address: '北京'
+            }
+        },
+        components: {
+            student
+        }
+    })
+    // 定义hello组件
+
+    const hello = Vue.extend({
+        name: 'hello',
+        template: `<div>
+         <h2>{{msg}}</h2>
+       
+            </div>`,
+        data() {
+            return {
+                msg: '欢迎来到vue！！！'
+            }
+        }
+    })
+
+    // 定义app组件
+    const app = Vue.extend({
+        name:'app',
+        template: `
+        <div>
+    <hello></hello>
+    <school></school>
+    </div>
+    `,components: {
+        hello,
+        school
+        }
+    })
+    new Vue({
+        el: "#root",
+        data: {
+            message: "hello vue"
+        },
+        template:`<app></app>`,
+        // 组测组件 局部
+        components: {
+            app
+        }
+    })
+
+</script>
+
+</html>

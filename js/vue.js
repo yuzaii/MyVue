@@ -402,7 +402,7 @@
      * Whether to enable devtools
      */
     // devtools: "development" !== 'production',
-    devtools: false,
+    devtools: true,
 
     /**
      * Whether to record perf
