@@ -1,9 +1,9 @@
 <template>
   <!--组建的结构-->
   <div class="demo">
-    <h2>学生姓名：{{ name }}</h2>
-    <h2>学生年龄：{{ age }}</h2>
-    <button @click="showname">点我提示学生姓名</button>
+    <h2>学校名称：{{ schoolname }}</h2>
+    <h2>学校地址：{{ schooladr }}</h2>
+    <button @click="showname">点我提示学校名</button>
   </div>
 </template>
 
@@ -15,12 +15,12 @@ export default Vue.extend({
   // el: "#app", // 不能写el配置项 vm配置
   data() {
     return {
-      name: "鱼仔",
-      age: 18
+      schoolname: "北京大学",
+      schooladr: "北京"
     }
   },methods: {
     showname(){
-      alert(this.name)
+      alert(this.schoolname)
     }
   },
 })
